@@ -1,7 +1,16 @@
-<h1>Restaurants</h1>
+<div class="bg-dark text-white rounded-4 p-5 mb-5 text-center">
+  <h1 class="display-5 fw-bold">Restaurants</h1>
+  <p class="lead mb-4">Les meilleures adresses, notées par vous.</p>
+  <%= link_to "Ajouter un restaurant", new_restaurant_path, class: "btn btn-warning btn-lg" %>
+</div>
 
 <% @restaurants.each do |restaurant| %>
-  <p><%= restaurant.name %></p>
-
-  <%= link_to "See details", restaurant_path(restaurant), class: "btn btn-primary" %>
+  <div class="bg-white rounded-4 shadow-sm p-4 mb-3 d-flex justify-content-between align-items-center">
+    <div>
+      <h4 class="mb-2"><%= restaurant.name %></h4>
+      <span class="badge rounded-pill bg-warning text-dark"><%= restaurant.category %></span>
+      <span class="text-muted ms-2"><%= restaurant.reviews.count %> avis</span>
+    </div>
+    <%= link_to "Voir", restaurant_path(restaurant), class: "btn btn-dark rounded-pill px-4" %>
+  </div>
 <% end %>

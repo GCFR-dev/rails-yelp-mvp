@@ -1,9 +1,13 @@
-<h1>Nouveau restaurant</h1>
+<div class="bg-white rounded-4 shadow-sm p-5 mx-auto" style="max-width: 600px;">
+  <h1 class="fw-bold mb-4">Nouveau restaurant</h1>
 
-<%= simple_form_for(@restaurant) do |f| %>
-  <%= f.input :name %>
-  <%= f.input :address %>
-  <%= f.input :phone_number %>
-  <%= f.input :category %>
-  <%= f.button :submit %>
-<% end %>
+  <%= simple_form_for(@restaurant) do |f| %>
+    <%= f.input :name %>
+    <%= f.input :address %>
+    <%= f.input :phone_number %>
+    <%= f.input :category, collection: Restaurant::CATEGORIES %>
+    <%= f.button :submit, class: "btn btn-warning rounded-pill px-4 mt-2" %>
+  <% end %>
+
+  <%= link_to "← Retour à la liste", restaurants_path, class: "btn btn-link text-dark px-0 mt-3" %>
+</div>

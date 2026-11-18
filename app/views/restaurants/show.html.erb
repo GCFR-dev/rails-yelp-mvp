@@ -1,4 +1,25 @@
-<h1><%= @restaurant.name %></h1>
-<p>Adresse : <%= @restaurant.address %></p>
-<p>Téléphone : <%= @restaurant.phone_number %></p>
-<p>Catégorie : <%= @restaurant.category %></p>
+<div class="bg-dark text-white rounded-4 p-5 mb-5">
+  <span class="badge rounded-pill bg-warning text-dark mb-3"><%= @restaurant.category %></span>
+  <h1 class="display-5 fw-bold"><%= @restaurant.name %></h1>
+  <p class="mb-1">📍 <%= @restaurant.address %></p>
+  <p class="mb-0">📞 <%= @restaurant.phone_number %></p>
+</div>
+
+<div class="d-flex justify-content-between align-items-center mb-3">
+  <h2 class="mb-0">Avis</h2>
+  <%= link_to "Ajouter un avis", new_restaurant_review_path(@restaurant), class: "btn btn-warning rounded-pill px-4" %>
+</div>
+
+<% if @restaurant.reviews.empty? %>
+  <p class="text-muted">Aucun avis pour l'instant. Sois le premier !</p>
+<% end %>
+
+<% @restaurant.reviews.each do |review| %>
+  <div class="bg-white rounded-4 shadow-sm p-4 mb-3">
+    <span class="text-warning fs-5"><%= "★" * review.rating %></span>
+    <span class="text-muted ms-2"><%= review.rating %>/5</span>
+    <p class="mb-0 mt-2"><%= review.content %></p>
+  </div>
+<% end %>
+
+<%= link_to "← Retour à la liste", restaurants_path, class: "btn btn-link text-dark px-0 mt-3" %>
